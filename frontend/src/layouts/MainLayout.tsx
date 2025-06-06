@@ -32,7 +32,7 @@ const MainLayout = () => {
     <div className="flex flex-col min-h-screen  ">
       {/* Header */}
       <header 
-        className={`sticky top-0 z-50  bg-gradient-to-b from-[#F5F5F5] to-[#B3E5FC] rounded-lg p-8 text-center transition-colors duration-300 ${
+        className={`sticky top-0 z-50  bg-gradient-to-b from-[#F5F5F5] to-[#B3E5FC] rounded-lg p-1 text-center transition-colors duration-300 ${
           isScrolled ? 'bg-white shadow-md' : 'bg-white'
         }`}
       >
@@ -51,7 +51,7 @@ const MainLayout = () => {
             {/* Logo and Navigation */}
             <div className="flex items-center flex-1 justify-between md:justify-start">
               <Link to="/" className="flex items-center">
-                <img src="/src/assets/logo.svg" alt="Skill Eureka" className="h-8 w-8" />
+                <img src="/src/assets/logo2.png" alt="Skill Eureka" className="h-12 w-12 rounded-lg" />
                 <span className="ml-2 text-lg font-semibold hidden md:block">Skill Eureka</span>
               </Link>
 
@@ -66,7 +66,7 @@ const MainLayout = () => {
               </Link>
               <Link to="/creators" className="nav-link font-semibold">
                 <Users className="h-5 w-5" />
-                <span>Creators</span>
+                <span>Community</span>
               </Link>
               <Link to="/library" className="nav-link font-semibold">
                 <Library className="h-5 w-5" />
