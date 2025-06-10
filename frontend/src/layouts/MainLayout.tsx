@@ -29,14 +29,14 @@ const MainLayout = () => {
   const showBackToCreators = location.pathname.includes('/creator/');
 
   return (
-    <div className="flex flex-col min-h-screen  ">
+    <div className="flex flex-col min-h-screen  bg-[#1C2658] ">
       {/* Header */}
       <header 
         className={`sticky top-0 z-50  bg-gradient-to-b from-[#F5F5F5] to-[#B3E5FC] rounded-lg p-1 text-center transition-colors duration-300 ${
           isScrolled ? 'bg-white shadow-md' : 'bg-white'
         }`}
       >
-        <div className="container mx-auto px-4 ">
+        <div className="container mx-auto px-1 ">
           <div className="flex items-center justify-between h-16">
             {/* Mobile Menu Button */}
             <div className="flex items-center md:hidden">
@@ -51,7 +51,7 @@ const MainLayout = () => {
             {/* Logo and Navigation */}
             <div className="flex items-center flex-1 justify-between md:justify-start">
               <Link to="/" className="flex items-center">
-                <img src="/src/assets/logo2.png" alt="Skill Eureka" className="h-12 w-12 rounded-lg" />
+                <img src="/src/assets/logo2.png" alt="Skill Eureka" className="h-12 w-12 rounded-lg object-cover" />
                 <span className="ml-2 text-lg font-semibold hidden md:block">Skill Eureka</span>
               </Link>
 
@@ -155,7 +155,7 @@ const MainLayout = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
-          <div className="bg-white h-full w-64 shadow-xl p-5 transform transition-transform duration-300 ease-in-out">
+          <div className="bg-white h-full w-64 shadow-xl p-1 transform transition-transform duration-300 ease-in-out">
             <div className="flex justify-between items-center mb-6">
               <Link to="/" className="flex items-center">
                 <img src="/src/assets/logo.svg" alt="Skill Eureka" className="h-8 w-8" />
@@ -214,12 +214,12 @@ const MainLayout = () => {
       </main>
 
       {/* Footer */}
-      <footer className=" bg-gradient-to-l from-[#F5F5F5] to-[#B3E5FC] rounded-lg p-8 text-center shadow-card border-t border-gray-200 py-6">
+      <footer className=" bg-gradient-to-l from-[#F5F5F5] to-[#B3E5FC] rounded-lg p-4 text-center shadow-card border-t border-gray-200 py-6">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <Link to="/" className="flex items-center justify-center md:justify-start">
-                <img src="/src/assets/logo.svg" alt="Skill Eureka" className="h-8 w-8" />
+                <img src="/src/assets/logo2.png" alt="Skill Eureka" className="h-8 w-8 object-cover" />
                 <span className="ml-2 text-lg font-semibold">Skill Eureka</span>
               </Link>
               <p className="text-sm text-gray-600 mt-1">Education for everyone, completely free</p>

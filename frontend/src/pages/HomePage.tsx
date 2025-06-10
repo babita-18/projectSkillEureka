@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useVideos } from '../context/VideoContext';
-import { useAuth } from '../context/AuthContext';
 import CategoryBar from '../components/CategoryBar';
 import VideoGrid from '../components/VideoGrid';
 
 const HomePage = () => {
-  const { videos, getVideosByCategory } = useVideos();
+  const { videos, getVideosByCategory, searchVideos } = useVideos();
   const [filteredVideos, setFilteredVideos] = useState(videos);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -17,10 +16,10 @@ const HomePage = () => {
       : getVideosByCategory(selectedCategory);
     
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      results = results.filter(video => 
-        video.title.toLowerCase().includes(query)
-      );
+      results = searchVideos(searchQuery);
+      if (selectedCategory !== 'all') {
+        results = results.filter(video => video.category === selectedCategory);
+      }
     }
     
     // Sort by upload date (newest first)
@@ -29,31 +28,29 @@ const HomePage = () => {
     );
     
     setFilteredVideos(results);
-  }, [videos, searchQuery, selectedCategory, getVideosByCategory]);
+  }, [videos, searchQuery, selectedCategory, getVideosByCategory, searchVideos]);
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
   };
 
+  // Listen for search from header
+  useEffect(() => {
+    const handleSearch = (event: CustomEvent) => {
+      setSearchQuery(event.detail.query);
+    };
+
+    window.addEventListener('headerSearch', handleSearch as EventListener);
+    return () => window.removeEventListener('headerSearch', handleSearch as EventListener);
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-6">
-      {/* Search Bar (for desktop, mobile search is in header) */}
-       <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search videos..."
-          className="input px-43 rounded-lg "
-        />
-      <div className=" md:block max-w-xl mx-auto mb-6">
-       
-      </div>
-      
       {/* Categories */}
       <CategoryBar onCategorySelect={handleCategorySelect} />
       
       {/* Videos Grid */}
-      <div className="mt-8 bg-  rounded-lg p-8 text-center ">
+      <div className="mt-6">
         <VideoGrid 
           videos={filteredVideos}
           columns={4} 

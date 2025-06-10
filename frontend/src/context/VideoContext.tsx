@@ -72,10 +72,11 @@ export const VideoProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getHistoryVideos = (historyIds: string[]) => {
+    return videos.filter(video => historyIds.includes(video.id));
     // Return videos in the order they appear in history
-    return historyIds
-      .map(id => videos.find(video => video.id === id))
-      .filter((video): video is Video => video !== undefined);
+  //  return historyIds
+    //  .map(id => videos.find(video => video.id === id))
+    //  .filter((video): video is Video => video !== undefined);
   };
 
   const searchVideos = (query: string) => {

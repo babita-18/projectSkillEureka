@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ThumbsUp, Bookmark, Clock, Share2 } from 'lucide-react';
+import { ThumbsUp, Bookmark, Clock, Share2, Copy, X } from 'lucide-react';
 import { useVideos } from '../context/VideoContext';
 import { useAuth } from '../context/AuthContext';
 import VideoPlayer from '../components/VideoPlayer';
-import VideoGrid from '../components/VideoGrid';
 
 const VideoPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +15,8 @@ const VideoPage = () => {
     saveVideo, 
     unsaveVideo, 
     addToWatchLater, 
-    removeFromWatchLater, 
+    removeFromWatchLater,
+    addToHistory,
     currentUser,
     isAuthenticated
   } = useAuth();
@@ -30,6 +30,8 @@ const VideoPage = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isWatchLater, setIsWatchLater] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   
   useEffect(() => {
     if (id) {
@@ -43,9 +45,14 @@ const VideoPage = () => {
         setRelatedVideos(
           getVideosByCreator(videoData.creatorId).filter(v => v.id !== id)
         );
+
+        // Add to history when video is opened
+        if (isAuthenticated) {
+          addToHistory(videoData.id);
+        }
       }
     }
-  }, [id, getVideo, getCreator, getVideosByCreator]);
+  }, [id, getVideo, getCreator, getVideosByCreator, isAuthenticated, addToHistory]);
   
   useEffect(() => {
     if (currentUser && video) {
@@ -102,6 +109,17 @@ const VideoPage = () => {
       setIsWatchLater(!isWatchLater);
     }
   };
+
+  const handleShare = () => {
+    setShowShareModal(true);
+  };
+
+  const handleCopyLink = () => {
+    const videoUrl = window.location.href;
+    navigator.clipboard.writeText(videoUrl);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
   
   if (!video || !creator) {
     return (
@@ -117,10 +135,10 @@ const VideoPage = () => {
         {/* Video and Info Column */}
         <div className="w-full lg:w-2/3">
           {/* Video Player */}
-          <VideoPlayer videoUrl={video.videoUrl} title={video.title} />
+          <VideoPlayer videoUrl={video.videoUrl} title={video.title} videoId={video.id} />
           
           {/* Video Info */}
-          <div className="mt-4 ">
+          <div className="mt-4">
             <h1 className="text-xl md:text-2xl font-bold">{video.title}</h1>
             
             {/* Creator Info */}
@@ -141,41 +159,44 @@ const VideoPage = () => {
             <div className="mt-4 flex flex-wrap gap-3">
               <button 
                 onClick={handleLikeToggle}
-                className={`flex items-center space-x-1 px-4 py-2 rounded-full ${
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all ${
                   isLiked 
-                    ? 'bg-blue-300' 
-                    : 'bg-gray-300 hover:bg-primary-dark'
-                } transition-colors`}
+                    ? 'bg-primary text-gray-800 shadow-md transform scale-105' 
+                    : 'bg-gray-100 hover:bg-gray-200 hover:shadow'
+                }`}
               >
-                <ThumbsUp className={`h-5 w-5 ${isLiked ? 'text-blue-600' : 'text-gray-900'}`} />
+                <ThumbsUp className={`h-5 w-5 ${isLiked ? 'text-primary-dark' : 'text-gray-600'}`} />
                 <span>Like</span>
               </button>
               
               <button 
                 onClick={handleSaveToggle}
-                className={`flex items-center space-x-1 px-4 py-2 rounded-full ${
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all ${
                   isSaved 
-                    ? 'bg-blue-300' 
-                    : 'bg-gray-300 hover:bg-primary-dark'
-                } transition-colors`}
+                    ? 'bg-primary text-gray-800 shadow-md transform scale-105' 
+                    : 'bg-gray-100 hover:bg-gray-200 hover:shadow'
+                }`}
               >
-                <Bookmark className={`h-5 w-5 ${isSaved ? 'text-blue-600' : 'text-gray-900'}`} />
+                <Bookmark className={`h-5 w-5 ${isSaved ? 'text-primary-dark' : 'text-gray-600'}`} />
                 <span>Save</span>
               </button>
               
               <button 
                 onClick={handleWatchLaterToggle}
-                className={`flex items-center space-x-1 px-4 py-2 rounded-full ${
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all ${
                   isWatchLater 
-                    ? 'bg-blue-300' 
-                    : 'bg-gray-300 hover:bg-primary-dark'
-                } transition-colors`}
+                    ? 'bg-primary text-gray-800 shadow-md transform scale-105' 
+                    : 'bg-gray-100 hover:bg-gray-200 hover:shadow'
+                }`}
               >
-                <Clock className={`h-5 w-5 ${isWatchLater ? 'text-blue-600' : 'text-gray-900'}`} />
+                <Clock className={`h-5 w-5 ${isWatchLater ? 'text-primary-dark' : 'text-gray-600'}`} />
                 <span>Watch Later</span>
               </button>
               
-              <button className="flex items-center space-x-1 px-4 py-2 rounded-full bg-blue-300 hover:bg-gray-400 transition-colors">
+              <button 
+                onClick={handleShare}
+                className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 hover:shadow transition-all"
+              >
                 <Share2 className="h-5 w-5 text-gray-600" />
                 <span>Share</span>
               </button>
@@ -213,6 +234,39 @@ const VideoPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Share Modal */}
+      {showShareModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Share Video</h3>
+              <button 
+                onClick={() => setShowShareModal(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <div className="flex items-center gap-2 bg-gray-100 p-2 rounded">
+              <input
+                type="text"
+                value={window.location.href}
+                readOnly
+                className="flex-1 bg-transparent border-none focus:outline-none"
+              />
+              <button
+                onClick={handleCopyLink}
+                className="flex items-center gap-2 px-3 py-1 bg-primary rounded hover:bg-primary-dark transition-colors"
+              >
+                <Copy className="h-4 w-4" />
+                {copySuccess ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

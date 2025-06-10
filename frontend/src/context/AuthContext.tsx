@@ -382,20 +382,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addToHistory = (videoId: string) => {
-    if (!currentUser) return;
+    if (!currentUser || !isAuthenticated) return;
     
-    // Keep only the last 10 videos in history
-    const updatedHistory = [
-      videoId,
-      ...currentUser.history.filter(id => id !== videoId)
-    ].slice(0, 10);
+    // Remove video from history if it already exists
+    const filteredHistory = currentUser.history.filter(id => id !== videoId);
+    
+    // Add video to the beginning and keep only last 10 videos
+    const updatedHistory = [videoId, ...filteredHistory].slice(0, 10);
     
     const updatedUser = {
       ...currentUser,
       history: updatedHistory
     };
+    
     setCurrentUser(updatedUser);
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+    
+    // Update users array
+    if (!currentUser.isCreator) {
+      setUsers(users.map(u => 
+        u.id === currentUser.id ? updatedUser : u
+      ));
+    }
   };
 
   return (

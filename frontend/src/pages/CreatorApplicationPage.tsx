@@ -50,49 +50,50 @@ const CreatorApplicationPage = () => {
         {/* Why Join Section */}
         <div className="bg-white rounded-lg shadow-card p-8 mb-8">
           <h1 className="text-3xl font-bold text-center mb-8">
-            Why EdTech Creators Should Join Skill Eureka
+           💡📱 Why EdTech Creators Should Join Skill Eureka 🌍🎯
           </h1>
           
           <ul className="space-y-4 mb-8">
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Support a Mission-Driven Platform:</strong> Help make education truly free and accessible, especially for underserved communities.</p>
+              <p className="ml-3"><strong> Support a Mission-Driven Platform 💡🌍 : 
+</strong> Help make education truly free and accessible, especially for underserved communities.</p>
             </li>
             
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Reach a Dedicated Learner Base:</strong> Your content reaches learners who are focused and not distracted by ads or paywalls.</p>
+              <p className="ml-3"><strong>Reach a Dedicated Learner Base 🎯📚 :</strong> Your content reaches learners who are focused and not distracted by ads or paywalls.</p>
             </li>
             
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Grow Your Personal Brand:</strong> Users can access your social media profiles directly from the platform—bringing you organic reach, more followers, and increased engagement across your channels.</p>
+              <p className="ml-3"><strong>Grow Your Personal Brand 🚀📱 :</strong> Users can access your social media profiles directly from the platform—bringing you organic reach, more followers, and increased engagement across your channels.</p>
             </li>
             
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Get Long-Term Visibility:</strong> Content on Skill Eureka remains accessible without the pressure of algorithm trends or ad competition.</p>
+              <p className="ml-3"><strong>Get Long-Term Visibility 🕒✨ :</strong> Content on Skill Eureka remains accessible without the pressure of algorithm trends or ad competition.</p>
             </li>
             
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Gain Credibility:</strong> Be part of a platform developed by IIT Guwahati and backed by Bright Eureka's educational vision.</p>
+              <p className="ml-3"><strong>Gain Credibility 🏛️✅ :</strong> Be part of a platform developed by IIT Guwahati and backed by Bright Eureka's educational vision.</p>
             </li>
             
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Leave a Legacy:</strong> Your knowledge contributes to a growing, permanent library that benefits learners for years to come.</p>
+              <p className="ml-3"><strong>Leave a Legacy 📖🌱 :</strong> Your knowledge contributes to a growing, permanent library that benefits learners for years to come.</p>
             </li>
             
             <li className="flex items-start">
               <div className="h-6 w-6 rounded-full bg-primary-DEFAULT flex items-center justify-center text-white font-bold flex-shrink-0 mt-1">✓</div>
-              <p className="ml-3"><strong>Join a Like-Minded Community:</strong> Connect with other educators who share a passion for making education equitable.</p>
+              <p className="ml-3"><strong> Join a Like-Minded Community 🤝💬 :</strong> Connect with other educators who share a passion for making education equitable.</p>
             </li>
           </ul>
           
           <div className="text-center">
             <a href="#apply" className="bg-blue-300 text-gray-800 rounded-md font-medium hover:bg-blue-400 transition-colors inline-block px-8 py-3 text-lg">
-              Become a Creator
+              Become a Creator 🔗🚀
             </a>
           </div>
         </div>

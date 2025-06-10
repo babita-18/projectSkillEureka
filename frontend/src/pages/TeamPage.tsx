@@ -8,7 +8,7 @@ const TeamPage = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         {mockTeamMembers.map(member => (
-          <div key={member.id} className="bg-primary-light rounded-lg shadow-card overflow-hidden">
+          <div key={member.id} className="h-70 bg-primary-light rounded-lg shadow-card overflow-hidden">
             <div className="h-64 bg-primary-light">
               <img 
                 src={member.profilePic} 

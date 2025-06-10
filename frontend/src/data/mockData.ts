@@ -1,6 +1,11 @@
 import { Video, Category } from "../context/VideoContext";
 import { Notification } from "../context/NotificationContext";
 
+import ayush from "../assets/ayush.jpg";
+import harshita from "../assets/harshita.jpg";
+import somita from "../assets/somita.jpg" ;
+import hansika from "../assets/hansika.jpg" ;
+import babita from  "../assets/babita.jpg" ;
 // Mock Users
 export const mockUsers = [
   {
@@ -185,9 +190,9 @@ export const mockCategories: Category[] = [
 export const mockTeamMembers = [
   {
     id: 'team1',
-    name: 'Dr. Anand Kumar',
-    role: 'Founder & Lead Developer',
-    bio: 'Computer Science professor at IIT Guwahati with a passion for accessible education',
+    name: 'Mr. Praveen Singh',
+    role: 'Founder & Director',
+    bio: 'Bright Eureka Private Limited',
     profilePic: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600',
     socialLinks: {
       linkedin: 'https://linkedin.com/in/anandkumar',
@@ -197,10 +202,10 @@ export const mockTeamMembers = [
   },
   {
     id: 'team2',
-    name: 'Dr. Priya Singh',
-    role: 'Education Director',
+    name: 'Babita Verma',
+    role: 'Project Team Lead',
     bio: 'Former high school principal with 15 years of experience in education management',
-    profilePic: 'https://images.pexels.com/photos/3767392/pexels-photo-3767392.jpeg?auto=compress&cs=tinysrgb&w=600',
+    profilePic: babita,
     socialLinks: {
       linkedin: 'https://linkedin.com/in/priyasingh',
       twitter: 'https://twitter.com/priyasingh'
@@ -208,10 +213,46 @@ export const mockTeamMembers = [
   },
   {
     id: 'team3',
-    name: 'Rahul Sharma',
+    name: 'Ayush Waghmare',
     role: 'Full Stack Developer',
     bio: 'IIT Guwahati graduate with expertise in React, Node.js and cloud infrastructure',
-    profilePic: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
+    profilePic: ayush,
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/rahulsharma',
+      github: 'https://github.com/rahulsharma',
+      twitter: 'https://twitter.com/rahulsharma'
+    }
+  },
+  {
+    id: 'team4',
+    name: 'Hansika Srivastav',
+    role: 'UI UX Designer',
+    bio: 'UI UX designer',
+    profilePic: hansika,
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/rahulsharma',
+      github: 'https://github.com/rahulsharma',
+      twitter: 'https://twitter.com/rahulsharma'
+    }
+  },
+  {
+    id: 'team5',
+    name: 'Harshita ',
+    role: 'Frontend Developer',
+    bio: 'IIT Guwahati student with expertise in React',
+    profilePic: harshita,
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/rahulsharma',
+      github: 'https://github.com/rahulsharma',
+      twitter: 'https://twitter.com/rahulsharma'
+    }
+  },
+  {
+    id: 'team6',
+    name: 'Somita ',
+    role: 'Frontend Developer',
+    bio: ' Guwahati student with expertise in React',
+    profilePic: somita,
     socialLinks: {
       linkedin: 'https://linkedin.com/in/rahulsharma',
       github: 'https://github.com/rahulsharma',
